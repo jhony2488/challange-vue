@@ -1,0 +1,51 @@
+@mixin display($display) {
+    display: $display;
+}
+@mixin gridLayoutColumns($columns) {
+    grid-template-columns: $columns;
+}
+@mixin gridLayoutRows($rows) {
+    grid-template-rows: $rows;
+}
+@mixin gridLayoutAreas($areas) {
+    grid-template-rows: $areas;
+}
+@mixin gridLayoutGap($columns, $rows) {
+    column-gap: $columns;
+    row-gap: $rows;
+}
+@mixin gridLayoutAutoColumns($columnsAuto) {
+    grid-auto-columns: $columnsAuto;
+}
+@mixin gridLayoutAutoRows($rowsAuto) {
+    grid-auto-rows: $rowsAuto;
+}
+@mixin gridLayoutAutoFlow($flow) {
+    grid-auto-flow: $flow;
+}
+@mixin gridLayoutAlignItems($x, $y) {
+    justify-items: $x;
+    align-items: $y;
+}
+@mixin gridLayoutAlignContent($x, $y) {
+    justify-content: $x;
+    align-content: $y;
+}
+@mixin gridLayoutItemColumnUnit($itemColumn) {
+    grid-column: $itemColumn;
+}
+@mixin gridLayoutItemColumnStartEnd($start, $end) {
+    grid-column-start: $start;
+    grid-column-end: $end;
+}
+@mixin gridLayoutItemRowUnit($itemRow) {
+    grid-row: $itemRow;
+}
+@mixin gridLayoutItemRowStartEnd($start, $end) {
+    grid-row-start: $start;
+    grid-row-end: $end;
+}
+@mixin gridLayoutItemAlign($x, $y) {
+    justify-self: $x;
+    align-self: $y;
+}

@@ -1,0 +1,26 @@
+.button-primary {
+    color: $color-secundary;
+    background-color: $color-highlighted;
+    width: 240px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    font-size: 24px;
+    &:hover {
+        @include hoverPattern(1.2, 0.4s, 1.2s);
+        background-color: $color-primary-light;
+    }
+}
+.button-secundary {
+    color: $color-secundary;
+    background-color: $color-primary-light;
+    width: 240px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    font-size: 24px;
+    &:hover {
+        @include hoverPattern(1.2, 0.4s, 1.2s);
+        background-color: $color-highlighted;
+    }
+}

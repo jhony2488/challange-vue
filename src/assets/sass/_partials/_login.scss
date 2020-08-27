@@ -1,0 +1,58 @@
+.login {
+    width: 100%;
+    min-height: 100vh;
+    @include display(grid);
+    @include gridLayoutAlignItems(center, center);
+    &-wrapper {
+        width: 500px;
+        height: 380px;
+        background-color: $color-secundary;
+        max-width: 100%;
+        @include display(grid);
+        @include gridLayoutAlignItems(center, center);
+        padding-top: 30px;
+        padding-bottom: 20px;
+        box-shadow: 4px 21px 27px 7px rgba(0,0,0,0.39);
+        p {
+            color: black;
+            font-size: 38px;
+        }
+        .form {
+            width: 100%;
+            height: 100%;
+            @include display(grid);
+            @include gridLayoutAlignItems(center, center);
+            &-content {
+                @include display(grid);
+                @include gridLayoutGap(1.2, 20px);
+                .input-label {
+                    @include display(grid);
+                    @include gridLayoutAlignItems(center, center);
+                    @include gridLayoutGap(1.2, 10px);
+
+                    label {
+                        font-size: 28px;
+                        text-transform: uppercase;
+                        color: black;
+                    }
+                    input {
+                        width: 100%;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 500px) {
+    .login {
+        @include display(grid);
+        @include gridLayoutAlignItems(center, center);
+        &-wrapper {
+            width: 90vh;
+            min-height: 80vh;
+            background-color: $color-secundary;
+            max-width: 100%;
+        }
+    }
+}

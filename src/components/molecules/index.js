@@ -1,0 +1,1 @@
+export { default as InputLabelRequired } from './InputLabelRequired.vue'

@@ -1,0 +1,50 @@
+.register {
+    width: 100%;
+    min-height: 100vh;
+    @include display(grid);
+    @include gridLayoutAlignItems(center, center);
+    h2{
+        font-size: 48px;
+        margin-bottom: 60px;
+        margin-top: -40px;
+    }
+    &-wrapper {
+        width: 80%;
+        @include display(grid);
+        @include gridLayoutAlignItems(center, center);
+        .form {
+            width: 100%;
+            height: 100%;
+            @include display(grid);
+            @include gridLayoutAlignItems(center, center);
+            &-content {
+                @include display(grid);
+                @include gridLayoutGap(1.2, 20px);
+                @include gridLayoutColumns(1fr 1fr 100px 1fr);
+                @include gridLayoutGap(30px, 1);
+                margin-bottom: 40px;
+                .input-label {
+                    @include display(grid);
+                    @include gridLayoutAlignItems(left, center);
+                    @include gridLayoutGap(1.2, 10px);
+
+                    label {
+                        font-size: 28px;
+                        text-transform: uppercase;
+                    }
+                    input {
+                        width: 100%;
+                        height: 30px;
+                    }
+                    #estado {
+                        width: 50px;
+                    }
+                    #cidade,
+                    #name {
+                        width: 300px;
+                    }
+                }
+            }
+        }
+    }
+}
