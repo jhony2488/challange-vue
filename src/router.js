@@ -1,23 +1,29 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/pages/index.vue'
-import Register from './views/pages/registerUser.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./views/pages/index.vue";
+import Register from "./views/pages/registerUser.vue";
+import userArea from "./views/pages/userArea.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: Home,
-      children: [],
+      children: []
     },
     {
-      path: '/register/',
-      name: 'register',
-      component: Register,
+      path: "/register/",
+      name: "register",
+      component: Register
     },
-  ],
-})
+    {
+      path: "/:id",
+      name: "userArea",
+      component: userArea
+    }
+  ]
+});

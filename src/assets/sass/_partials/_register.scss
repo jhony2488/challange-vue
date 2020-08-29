@@ -20,8 +20,8 @@
             &-content {
                 @include display(grid);
                 @include gridLayoutGap(1.2, 20px);
-                @include gridLayoutColumns(1fr 1fr 100px 1fr);
-                @include gridLayoutGap(30px, 1);
+                @include gridLayoutColumns(100px 150px 200px 100px 1fr);
+                @include gridLayoutGap(40px, 1);
                 margin-bottom: 40px;
                 .input-label {
                     @include display(grid);
@@ -39,9 +39,8 @@
                     #estado {
                         width: 50px;
                     }
-                    #cidade,
                     #name {
-                        width: 300px;
+                        width: 200px;
                     }
                 }
             }

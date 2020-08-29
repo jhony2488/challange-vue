@@ -1,13 +1,13 @@
 <template>
-  <Register />
+  <UserArea />
 </template>
  
  <script>
-import { Register } from "@/components/templates";
+import { UserArea } from "@/components/templates";
 
 export default {
   components: {
-    Register,
+    UserArea,
   },
 };
 </script>

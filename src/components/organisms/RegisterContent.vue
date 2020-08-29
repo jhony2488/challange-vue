@@ -1,13 +1,19 @@
  <template>
   <div class="register-wrapper">
-      <h2>Cadastre-se</h2>
-    <form action="" class="form">
+    <h2>Cadastre-se</h2>
+    <form class="form" @submit.prevent="register()">
       <div class="form-content">
         <InputLabelRequired
           type="text"
-          idInput="name"
-          placeholder="Jhonata Vincius Da Silva Araujo"
-          content="nome"
+          idInput="first_name"
+          placeholder="Jhonata"
+          content="Nome"
+        />
+        <InputLabelRequired
+          type="text"
+          idInput="last_name"
+          placeholder="Vinicius"
+          content="Sobrenome"
         />
         <InputLabelRequired
           type="email"
@@ -47,19 +53,16 @@
           content="Estado"
         />
       </div>
-      <ButtonPrimary
-        content="Cadastrar"
-        button="button-primary"
-        type="submit"
-      />
+      <Button content="Cadastrar" buttonClass="button-primary" type="submit" />
     </form>
   </div>
 </template>
  
  <script>
 import { InputLabelRequired } from "@/components/molecules";
-import { ButtonPrimary } from "@/components/atoms";
-import axios from "axios";
+import { Button } from "@/components/atoms";
+import { functionGlobal } from "../../assets/js/authentication";
+import { functionCep } from "../../assets/js/cep";
 
 export default {
   data() {
@@ -74,29 +77,35 @@ export default {
   },
   components: {
     InputLabelRequired,
-    ButtonPrimary,
+    Button,
   },
   methods: {
     Cep() {
-      this.parsedCep = document.getElementById("cep").value;
-      this.parsedCep = this.parsedCep.replace("-", "");
-      if (this.parsedCep.length == 8) {
-        axios
-          .get("https://viacep.com.br/ws/" + this.parsedCep + "/json/unicode/")
-          .then((data) => {
-            console.log(data.data);
-            document.getElementById("logradouro").value = data.data.logradouro;
-            document.getElementById("bairro").value = data.data.bairro;
-            document.getElementById("cidade").value = data.data.localidade;
-            document.getElementById("estado").value = data.data.uf;
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
+      functionCep.cep(this.parsedCep, this.$api);
+    },
+    authentication() {
+      let exist = this.$session.exists(),
+        get = this.$session.get(0);
+      functionGlobal.authenticationPage(exist, get, this.$router);
+    },
+    register() {
+      alert("foi");
+      let newUser = {
+        email: document.getElementById("email").value,
+        first_name: document.getElementById("first_name").value,
+        last_name: document.getElementById("last_name").value,
+      };
+      this.$api
+        .post("https://reqres.in/api/users", newUser)
+        .then((res) => {
+          console.log(res);
+          this.$router.push("/");
+        })
+        .catch((error) => alert(error));
     },
   },
   created() {
+    this.authentication();
     setInterval(() => {
       this.Cep();
     }, 1000);
