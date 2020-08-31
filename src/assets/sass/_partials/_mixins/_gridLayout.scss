@@ -1,6 +1,3 @@
-@mixin display($display) {
-    display: $display;
-}
 @mixin gridLayoutColumns($columns) {
     grid-template-columns: $columns;
 }

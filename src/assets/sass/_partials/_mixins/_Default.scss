@@ -1,0 +1,9 @@
+@mixin display($display) {
+    display: $display;
+}
+@mixin div-principal {
+    width: 100%;
+    min-height: 100vh;
+    @include display(grid);
+    @include gridLayoutAlignItems(center, center);
+}

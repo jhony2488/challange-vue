@@ -11,19 +11,19 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "login",
       component: Home,
-      children: []
+      children: [],
     },
     {
       path: "/register/",
       name: "register",
-      component: Register
+      component: Register,
     },
     {
       path: "/:id",
       name: "userArea",
-      component: userArea
-    }
-  ]
+      component: userArea,
+    },
+  ],
 });

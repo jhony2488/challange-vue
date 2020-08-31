@@ -1,8 +1,5 @@
 .login {
-    width: 100%;
-    min-height: 100vh;
-    @include display(grid);
-    @include gridLayoutAlignItems(center, center);
+    @include div-principal;
     &-wrapper {
         width: 500px;
         height: 380px;
@@ -12,7 +9,7 @@
         @include gridLayoutAlignItems(center, center);
         padding-top: 30px;
         padding-bottom: 20px;
-        box-shadow: 4px 21px 27px 7px rgba(0,0,0,0.39);
+        box-shadow: 4px 21px 27px 7px rgba(0, 0, 0, 0.39);
         p {
             color: black;
             font-size: 38px;
@@ -49,7 +46,7 @@
         @include display(grid);
         @include gridLayoutAlignItems(center, center);
         &-wrapper {
-            width: 90vh;
+            width: 300px;
             min-height: 80vh;
             background-color: $color-secundary;
             max-width: 100%;

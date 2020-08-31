@@ -1,9 +1,9 @@
 export const functionLogin = {
   login: (api, sessionSave, router) => {
-    api.get("https://reqres.in/api/users").then(data => {
+    api.get("https://reqres.in/api/users").then((data) => {
       let datasUser, testLogin, keyUser;
 
-      datasUser = data.data.data.filter(user => {
+      datasUser = data.data.data.filter((user) => {
         let nome = user.first_name + user.last_name,
           nomeGet = document.getElementById("name").value,
           emailGet = document.getElementById("email").value;
@@ -17,13 +17,16 @@ export const functionLogin = {
             return user;
           } else {
             console.log("Nome Incorreto:" + nomeGet);
+            alert("nome incorreto");
             return false;
           }
         } else {
           if (data.data.data.lenght >= testLogin) {
             console.log("Email Incorreto:" + emailGet);
+            alert("email incorreto");
             return false;
           }
+
           testLogin++;
         }
       });
@@ -39,5 +42,5 @@ export const functionLogin = {
         router.push("/" + keyUser);
       }
     });
-  }
+  },
 };

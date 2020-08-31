@@ -43,12 +43,25 @@
         type="submit"
       />
     </form>
+    <div class="nearby-locations">
+      <div
+        class="nearby-locations"
+        v-for="item in nearbyLocations"
+        :key="item.place_id"
+      >
+        <img :src="item.icon" :alt="item.name" />
+        <h3>{{ item.name }}</h3>
+        <div :v-if="item != 0 || item != undefined">
+          <Rantings :item="item.rating" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { Button } from "@/components/atoms";
-import { InputLabelRequired } from "@/components/molecules";
+import { InputLabelRequired, Rantings } from "@/components/molecules";
 import { functionUserArea } from "../../assets/js/userArea";
 import { functionCookies } from "../../assets/js/cookies";
 
@@ -60,11 +73,13 @@ export default {
       name: null,
       id: null,
       editPerfil: false,
+      nearbyLocations: [],
     };
   },
   components: {
     Button,
     InputLabelRequired,
+    Rantings,
   },
   methods: {
     validation() {
@@ -77,27 +92,34 @@ export default {
       functionUserArea.logoffUser(remove, this.$router.push("/"));
     },
     putProfile() {
-      let email = document.getElementById("emailPut").value,
-        firstName = document.getElementById("firstNamePut").value,
-        lastName = document.getElementById("lastNamePut").value,
-        id = this.$session.get(0).id;
-
-      this.putProfileValue = {
-        email: email,
-        first_name: firstName,
-        last_name: lastName,
-      };
-
-      this.$api
-        .put("https://reqres.in/api/users/" + id, this.putProfileValue)
-        .then((res) => console.log(res))
-        .catch((error) => alert(error));
+      functionUserArea.putProfile(this.$session.get(0), this.$api);
     },
     setValueInputs() {
       let valueInput = document.getElementById("emailPut").value;
       if (this.editPerfil && valueInput.length <= 0) {
         alert(valueInput.length);
         this.setValuesInputs;
+      }
+    },
+    nearbyLocationsGet() {
+      let latitude = 0,
+        longitude = 0;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          latitude = String(latitude);
+          longitude = String(longitude);
+          this.$api
+            .get(
+              ` https://maps.googleapis.com/maps/api/place/nearbysearch/json?parameters&key=AIzaSyDllpqAp1iHkkEam0cb0PtDQSTpOblQ504&location=${latitude},${longitude}&radius=1500`
+            )
+            .then((res) => {
+              console.log(res.data.results);
+              this.nearbyLocations = res.data.results;
+            })
+            .catch((error) => console.log(error));
+        });
       }
     },
   },
@@ -116,6 +138,7 @@ export default {
   created() {
     let sessionGetUser = this.$session.get(0);
     this.validation();
+    this.nearbyLocationsGet();
     if (this.validation()) {
       this.profile = sessionGetUser;
       this.img = this.profile.avatar;

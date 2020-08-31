@@ -3,7 +3,7 @@ export const functionAxios = {
     vue.use({
       install(Vue) {
         Vue.prototype.$api = axios.create({
-          baseURL: "https://reqres.in/api/users"
+          baseURL: ""
         });
       }
     });

@@ -1,6 +1,8 @@
+import { functionDate } from "../../assets/js/date";
+
 export const functionCookies = {
   setCookie: (name, value) => {
-    let duration = data(),
+    let duration = functionDate.date(),
       cookie =
         name +
         "=" +
@@ -9,7 +11,7 @@ export const functionCookies = {
 
     document.cookie = cookie;
   },
-  getCookie: name => {
+  getCookie: (name) => {
     let cookies = document.cookie,
       prefix = name + "=",
       begin = cookies.indexOf("; " + prefix),
@@ -42,34 +44,5 @@ export const functionCookies = {
     }
     document.getElementById("email").value = "";
     document.getElementById("name").value = "";
-  }
+  },
 };
-function data() {
-  let date = new Date(),
-    day = date.getDate(),
-    month = date.getMonth(),
-    year = date.getFullYear(),
-    time =
-      date.getHours() +
-      ":" +
-      date.getMinutes() +
-      ":" +
-      date.getSeconds() +
-      " " +
-      "UTC";
-  if (diasNoMes() == 31 && day >= 27) {
-    month++;
-    day -= 31;
-  } else if (diasNoMes() == 30 && day >= 26) {
-    month++;
-    day -= 30;
-  }
-  if (month < 10) {
-    month = "0" + month;
-  }
-  return (date = new Date(day + " " + month + " " + year + " " + time));
-}
-function diasNoMes(mes, ano) {
-  var data = new Date(ano, mes, 0);
-  return data.getDate();
-}

@@ -89,19 +89,27 @@ export default {
       functionGlobal.authenticationPage(exist, get, this.$router);
     },
     register() {
-      alert("foi");
       let newUser = {
         email: document.getElementById("email").value,
         first_name: document.getElementById("first_name").value,
         last_name: document.getElementById("last_name").value,
       };
-      this.$api
-        .post("https://reqres.in/api/users", newUser)
-        .then((res) => {
-          console.log(res);
-          this.$router.push("/");
-        })
-        .catch((error) => alert(error));
+      if (
+        newUser.email != "" &&
+        newUser.email != undefined &&
+        newUser.first_name != "" &&
+        newUser.last_name != undefined
+      ) {
+        this.$api
+          .post("https://reqres.in/api/users", newUser)
+          .then((res) => {
+            console.log(res);
+            this.$router.push("/");
+          })
+          .catch((error) => alert(error));
+      } else {
+        alert("insira todos os valores corretamente");
+      }
     },
   },
   created() {

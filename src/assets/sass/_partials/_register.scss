@@ -1,9 +1,6 @@
 .register {
-    width: 100%;
-    min-height: 100vh;
-    @include display(grid);
-    @include gridLayoutAlignItems(center, center);
-    h2{
+    @include div-principal;
+    h2 {
         font-size: 48px;
         margin-bottom: 60px;
         margin-top: -40px;
@@ -19,7 +16,6 @@
             @include gridLayoutAlignItems(center, center);
             &-content {
                 @include display(grid);
-                @include gridLayoutGap(1.2, 20px);
                 @include gridLayoutColumns(100px 150px 200px 100px 1fr);
                 @include gridLayoutGap(40px, 1);
                 margin-bottom: 40px;
@@ -41,6 +37,28 @@
                     }
                     #name {
                         width: 200px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1280px) {
+    .register {
+        padding-top: 80px;
+        h2 {
+            max-width: 100%;
+        }
+        &-wrapper {
+            .form {
+                &-content {
+                    @include gridLayoutColumns(1fr);
+                    @include gridLayoutGap(1.12, 30px);
+                    margin-bottom: 40px;
+                    .input-label {
+                        @include display(grid);
+                        @include gridLayoutAlignItems(center, center);
+                        @include gridLayoutGap(1.2, 10px);
                     }
                 }
             }

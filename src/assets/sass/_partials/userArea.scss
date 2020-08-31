@@ -1,0 +1,49 @@
+.user-area {
+    @include div-principal;
+    &-wrapper {
+        @include display(grid);
+        @include gridLayoutAlignItems(center, center);
+        @include gridLayoutGap(1, 30px);
+        padding-bottom: 60px;
+        width: 100%;
+        .profile {
+            width: 100%;
+            @include display(grid);
+            @include gridLayoutAlignItems(center, center);
+            @include gridLayoutGap(1, 10px);
+            padding-top: 30px;
+            max-width: 320px;
+            img {
+                border-radius: 120px;
+                width: 200px;
+            }
+        }
+        .edit-profile {
+            @include display(grid);
+            @include gridLayoutAlignItems(center, center);
+            max-width: 320px;
+        }
+        .nearby-locations {
+            @include display(grid);
+            @include gridLayoutAlignItems(center, center);
+            @include gridLayoutGap(1, 10px);
+            h3{
+                max-width: 90%;
+                text-align: center;
+            }
+            img{
+                width: 120px;
+                margin-bottom: 15px;
+            }
+            .nearby-locations__ranting {
+                max-width: 320px;
+                @include display(grid);
+                @include gridLayoutAlignItems(center, center);
+                @include gridLayoutColumns(repeat(5, 1fr));
+                img {
+                    width: 40px !important;
+                }
+            }
+        }
+    }
+}
